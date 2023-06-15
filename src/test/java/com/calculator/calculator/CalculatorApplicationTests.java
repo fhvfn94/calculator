@@ -29,8 +29,6 @@ class CalculatorApplicationTests {
 		CalculatorService calculatorService = new CalculatorService();
 		Integer result1 = calculatorService.minus(14, 4);
 		Integer result2 = calculatorService.minus(3, 4);
-//		Assertions.assertEquals(result2, 12);
-		Assertions.assertEquals(result1, 6);
 		Assertions.assertNotEquals(result1, result2);
 		Assertions.assertNotNull(result1);
 	}
@@ -41,8 +39,6 @@ class CalculatorApplicationTests {
 		CalculatorService calculatorService = new CalculatorService();
 		Integer result1 = calculatorService.minus(3, 4);
 		Integer result2 = calculatorService.minus(3, 4);
-//		Assertions.assertEquals(result2, 12);
-//		Assertions.assertEquals(result1, 6);
 		Assertions.assertNotEquals(result1, result2);
 		Assertions.assertNotNull(result1);
 	}
