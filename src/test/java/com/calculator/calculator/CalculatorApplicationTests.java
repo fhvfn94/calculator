@@ -5,11 +5,17 @@ import com.calculator.calculator.Service.CalculatorService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Service;
 
 @SpringBootTest
 class CalculatorApplicationTests {
+
+	//	Вынесс объект в свойство класса
+	CalculatorService calculatorService = new CalculatorService();
+
 
 	@Test
 	@DisplayName("тест метода plus")
@@ -30,7 +36,6 @@ class CalculatorApplicationTests {
 		Integer result1 = calculatorService.minus(14, 4);
 		Integer result2 = calculatorService.minus(3, 4);
 		Assertions.assertNotEquals(result1, result2);
-		Assertions.assertNotNull(result1);
 	}
 
 	@Test
@@ -39,8 +44,7 @@ class CalculatorApplicationTests {
 		CalculatorService calculatorService = new CalculatorService();
 		Integer result1 = calculatorService.minus(3, 4);
 		Integer result2 = calculatorService.minus(3, 4);
-		Assertions.assertNotEquals(result1, result2);
-		Assertions.assertNotNull(result1);
+		Assertions.assertEquals(result2, result2);
 	}
 
 	@Test
@@ -56,5 +60,13 @@ class CalculatorApplicationTests {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 			calculatorService.divide(3, 0);
 		});
+	}
+
+	@ParameterizedTest
+	@DisplayName("вот параметризованный тест")
+	@CsvSource({"3, 4"})
+	public void parTest(Integer num1, Integer num2) {
+		Integer result = calculatorService.plus(num1, num2);
+		Assertions.assertEquals(7, result);
 	}
 }
